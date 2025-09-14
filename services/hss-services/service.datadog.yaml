@@ -1,0 +1,22 @@
+apiVersion: v3
+kind: service
+metadata:
+  name: hss-services
+  description: HSS demo service: shared services
+  tags:
+    - team:hss-security-team
+    - owner:et
+    - customer:hss
+    - env:demo
+spec:
+  type: other
+  lifecycle: production
+  tier: 2
+  links:
+    - name: Runbook
+      type: runbook
+      url: https://example.com/runbooks/hss-services
+  contacts:
+    - name: hss-security-team
+      type: email
+      contact: hss-security-team@example.com

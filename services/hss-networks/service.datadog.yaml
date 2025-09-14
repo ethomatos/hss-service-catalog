@@ -1,0 +1,22 @@
+apiVersion: v3
+kind: service
+metadata:
+  name: hss-networks
+  description: HSS demo service: networks
+  tags:
+    - team:hss-network-team
+    - owner:et
+    - customer:hss
+    - env:demo
+spec:
+  type: other
+  lifecycle: production
+  tier: 2
+  links:
+    - name: Runbook
+      type: runbook
+      url: https://example.com/runbooks/hss-networks
+  contacts:
+    - name: hss-network-team
+      type: email
+      contact: hss-network-team@example.com
