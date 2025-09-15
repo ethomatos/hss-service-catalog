@@ -1,22 +1,50 @@
 apiVersion: v3
 kind: service
 metadata:
-  name: hss-servers
-  description: HSS demo service: servers
+  name: hss-services
+  description: HSS demo service - shared services and security infrastructure
+  displayName: HSS Services
   tags:
-    - team:hss-server-team
+    - team:hss-security-team
     - owner:et
     - customer:hss
     - env:demo
-spec:
-  type: other
-  lifecycle: production
-  tier: 2
+    - business-unit:infrastructure
+  owner: hss-security-team
   links:
-    - name: Runbook
+    - name: HSS Services Runbook
       type: runbook
-      url: https://example.com/runbooks/hss-servers
+      url: https://runbook.example.com/hss-services
+    - name: HSS Security Architecture
+      type: doc
+      provider: wiki
+      url: https://wiki.example.com/hss-services
+    - name: HSS Services Source
+      type: repo
+      provider: github
+      url: https://github.com/ethomatos/hss-services
   contacts:
-    - name: hss-server-team
+    - name: HSS Security Team
       type: email
-      contact: hss-server-team@example.com
+      contact: hss-security-team@example.com
+    - name: HSS Security Support
+      type: slack
+      contact: https://slack.com/channels/hss-security
+integrations:
+  pagerduty:
+    serviceURL: https://pagerduty.com/service-directory/hss-services
+datadog:
+  events:
+    - name: HSS Services deployment events
+      query: service:hss-services AND type:deployment
+  logs:
+    - name: HSS Services critical logs
+      query: service:hss-services AND status:error
+    - name: HSS Security alerts
+      query: service:hss-services AND @security.alert:true
+spec:
+  lifecycle: production
+  tier: "2"
+  type: web
+  components:
+    - service:hss-services
