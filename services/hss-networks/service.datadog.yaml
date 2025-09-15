@@ -8,15 +8,8 @@ metadata:
     - owner:et
     - customer:hss
     - env:demo
+    - business-unit:infrastructure
 spec:
-  type: other
+  type: web
   lifecycle: production
-  tier: 2
-  links:
-    - name: Runbook
-      type: runbook
-      url: https://example.com/runbooks/hss-networks
-  contacts:
-    - name: hss-network-team
-      type: email
-      contact: hss-network-team@example.com
+  tier: "2"
