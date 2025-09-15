@@ -1,50 +1,72 @@
-apiVersion: v3
-kind: service
-metadata:
-  name: hss-services
-  description: HSS demo service - shared services and security infrastructure
-  displayName: HSS Services
-  tags:
-    - team:hss-security-team
-    - owner:et
-    - customer:hss
-    - env:demo
-    - business-unit:infrastructure
-  owner: hss-security-team
-  links:
-    - name: HSS Services Runbook
-      type: runbook
-      url: https://runbook.example.com/hss-services
-    - name: HSS Security Architecture
-      type: doc
-      provider: wiki
-      url: https://wiki.example.com/hss-services
-    - name: HSS Services Source
-      type: repo
-      provider: github
-      url: https://github.com/ethomatos/hss-services
-  contacts:
-    - name: HSS Security Team
-      type: email
-      contact: hss-security-team@example.com
-    - name: HSS Security Support
-      type: slack
-      contact: https://slack.com/channels/hss-security
-integrations:
-  pagerduty:
-    serviceURL: https://pagerduty.com/service-directory/hss-services
-datadog:
-  events:
-    - name: HSS Services deployment events
-      query: service:hss-services AND type:deployment
-  logs:
-    - name: HSS Services critical logs
-      query: service:hss-services AND status:error
-    - name: HSS Security alerts
-      query: service:hss-services AND @security.alert:true
-spec:
-  lifecycle: production
-  tier: "2"
-  type: web
-  components:
-    - service:hss-services
+{
+  "apiVersion": "v3",
+  "kind": "service",
+  "metadata": {
+    "name": "hss-servers",
+    "displayName": "HSS Servers",
+    "description": "HSS demo service - servers infrastructure management",
+    "tags": [
+      "team:hss-server-team",
+      "owner:et",
+      "customer:hss",
+      "env:demo",
+      "business-unit:infrastructure"
+    ],
+    "links": [
+      {
+        "name": "HSS Servers Runbook",
+        "type": "runbook",
+        "url": "https://runbook.example.com/hss-servers"
+      },
+      {
+        "name": "HSS Servers Wiki",
+        "type": "doc",
+        "provider": "wiki",
+        "url": "https://wiki.example.com/hss-servers"
+      },
+      {
+        "name": "HSS Servers Source",
+        "type": "repo",
+        "provider": "github",
+        "url": "https://github.com/ethomatos/hss-servers"
+      }
+    ],
+    "contacts": [
+      {
+        "name": "HSS Server Team",
+        "type": "email",
+        "contact": "hss-server-team@example.com"
+      },
+      {
+        "name": "HSS Server Support",
+        "type": "slack",
+        "contact": "https://slack.com/channels/hss-servers"
+      }
+    ],
+    "owner": "hss-server-team"
+  },
+  "spec": {
+    "type": "web",
+    "lifecycle": "production",
+    "tier": "2"
+  },
+  "integrations": {
+    "pagerduty": {
+      "serviceURL": "https://pagerduty.com/service-directory/hss-servers"
+    }
+  },
+  "datadog": {
+    "events": [
+      {
+        "name": "HSS Server deployment events",
+        "query": "service:hss-servers AND type:deployment"
+      }
+    ],
+    "logs": [
+      {
+        "name": "HSS Server critical logs",
+        "query": "service:hss-servers AND status:error"
+      }
+    ]
+  }
+}
