@@ -2,7 +2,7 @@ apiVersion: v3
 kind: service
 metadata:
   name: hss-services
-  description: HSS demo service: shared services
+  description: HSS demo service - shared services
   tags:
     - team:hss-security-team
     - owner:et

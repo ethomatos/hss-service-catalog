@@ -2,7 +2,7 @@ apiVersion: v3
 kind: service
 metadata:
   name: hss-databases
-  description: HSS demo service: databases
+  description: HSS demo service - databases
   tags:
     - team:hss-database-team
     - owner:et

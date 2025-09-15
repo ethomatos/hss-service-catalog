@@ -2,7 +2,7 @@ apiVersion: v3
 kind: service
 metadata:
   name: hss-networks
-  description: HSS demo service: networks
+  description: HSS demo service - networks
   tags:
     - team:hss-network-team
     - owner:et
