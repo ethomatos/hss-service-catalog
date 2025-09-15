@@ -1,10 +1,11 @@
-"apiVersion": "v3",
-"kind": "service",
-"metadata": {
-  "name": "hss-services",
-  "displayName": "HSS Services",
-  "description": "HSS demo services - placeholder",
-    "tags": [
+{
+  "apiVersion": "v3",
+  "kind": "service",
+  "metadata": {
+    "name": "hss-services",
+    "displayName": "HSS Services",
+    "description": "HSS demo services - placeholder",
+   "tags": [
       "team:hss-security-team",
       "owner:et",
       "customer:hss",
@@ -78,3 +79,4 @@
       }
     ]
   }
+}
