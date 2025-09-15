@@ -1,22 +1,80 @@
-apiVersion: v3
-kind: service
-metadata:
-  name: hss-services
-  description: HSS demo service: shared services
-  tags:
-    - team:hss-security-team
-    - owner:et
-    - customer:hss
-    - env:demo
-spec:
-  type: other
-  lifecycle: production
-  tier: 2
-  links:
-    - name: Runbook
-      type: runbook
-      url: https://example.com/runbooks/hss-services
-  contacts:
-    - name: hss-security-team
-      type: email
-      contact: hss-security-team@example.com
+"apiVersion": "v3",
+"kind": "service",
+"metadata": {
+  "name": "hss-services",
+  "displayName": "HSS Services",
+  "description": "HSS demo services - placeholder",
+    "tags": [
+      "team:hss-security-team",
+      "owner:et",
+      "customer:hss",
+      "env:demo",
+      "business-unit:infrastructure"
+    ],
+    "links": [
+      {
+        "name": "HSS Services Runbook",
+        "type": "runbook",
+        "url": "https://runbook.example.com/hss-services"
+      },
+      {
+        "name": "HSS Services Architecture",
+        "type": "doc",
+        "provider": "wiki",
+        "url": "https://wiki.example.com/hss-services"
+      },
+      {
+        "name": "HSS Services Source",
+        "type": "repo",
+        "provider": "github",
+        "url": "https://github.com/ethomatos/hss-services"
+      }
+    ],
+    "contacts": [
+      {
+        "name": "HSS Security Team",
+        "type": "email",
+        "contact": "hss-security-team@example.com"
+      },
+      {
+        "name": "HSS Services Support",
+        "type": "slack",
+        "contact": "https://slack.com/channels/hss-services"
+      }
+    ],
+    "owner": "hss-security-team"
+  },
+  "spec": {
+    "type": "web",
+    "lifecycle": "production",
+    "tier": "2"
+    "dependsOn": [
+      "service:hss-servers",
+      "service:hss-networks",
+      "service:hss-databases"
+    ]
+  }
+  },
+  "integrations": {
+    "pagerduty": {
+      "serviceURL": "https://pagerduty.com/service-directory/hss-services"
+    }
+  },
+  "datadog": {
+    "events": [
+      {
+        "name": "HSS Services deployment events",
+        "query": "service:hss-services AND type:deployment"
+      }
+    ],
+    "logs": [
+      {
+        "name": "HSS Services critical logs",
+        "query": "service:hss-services AND status:error"
+      },
+      {
+        "name": "HSS Services connectivity logs",
+        "query": "service:hss-services AND @network.status:down"
+      }
+    ]
+  }
