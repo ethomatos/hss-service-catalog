@@ -4,8 +4,8 @@
   "metadata": {
     "name": "hss-services",
     "displayName": "HSS Services",
-    "description": "HSS demo services - placeholder",
-   "tags": [
+    "description": "HSS demo service - services management",
+    "tags": [
       "team:hss-security-team",
       "owner:et",
       "customer:hss",
@@ -19,7 +19,7 @@
         "url": "https://runbook.example.com/hss-services"
       },
       {
-        "name": "HSS Services Architecture",
+        "name": "HSS Services Wiki",
         "type": "doc",
         "provider": "wiki",
         "url": "https://wiki.example.com/hss-services"
@@ -33,9 +33,9 @@
     ],
     "contacts": [
       {
-        "name": "HSS Security Team",
+        "name": "HSS Services Team",
         "type": "email",
-        "contact": "hss-security-team@example.com"
+        "contact": "hss-services-team@example.com"
       },
       {
         "name": "HSS Services Support",
@@ -48,13 +48,8 @@
   "spec": {
     "type": "web",
     "lifecycle": "production",
-    "tier": "2"
-    "dependsOn": [
-      "service:hss-servers",
-      "service:hss-networks",
-      "service:hss-databases"
-    ]
-  }
+    "tier": "2",
+    "dependsOn": [ "service:hss-networks", "service:hss-security", "service:hss-servers" ]
   },
   "integrations": {
     "pagerduty": {
@@ -72,10 +67,6 @@
       {
         "name": "HSS Services critical logs",
         "query": "service:hss-services AND status:error"
-      },
-      {
-        "name": "HSS Services connectivity logs",
-        "query": "service:hss-services AND @network.status:down"
       }
     ]
   }
