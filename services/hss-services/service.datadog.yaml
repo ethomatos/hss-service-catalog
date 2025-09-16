@@ -34,6 +34,11 @@ spec:
   type: web
   lifecycle: production
   tier: "2"
+  dependsOn:
+    - service:hss-servers
+    - service:hss-networks
+    - service:hss-databases
+    - service:hss-cloud
 integrations:
   pagerduty:
     serviceURL: https://pagerduty.com/service-directory/hss-services
