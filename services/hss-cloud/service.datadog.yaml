@@ -2,7 +2,7 @@ apiVersion: v3
 kind: service
 metadata:
   name: hss-cloud
-  displayName: HSS Cloud Services
+  displayName: HSS Cloud
   description: HSS cloud demo service - AWS and beyond
   tags:
     - team:hss-cloud-team
