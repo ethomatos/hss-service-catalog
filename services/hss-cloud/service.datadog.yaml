@@ -1,0 +1,48 @@
+apiVersion: v3
+kind: service
+metadata:
+  name: hss-cloud
+  displayName: HSS Cloud Services
+  description: HSS cloud demo service - AWS and beyond
+  tags:
+    - team:hss-cloud-team
+    - owner:et
+    - customer:hss
+    - env:demo
+    - business-unit:cloud
+  links:
+    - name: HSS Cloud Runbook
+      type: runbook
+      url: https://runbook.example.com/hss-cloud
+    - name: HSS Cloud Architecture
+      type: doc
+      provider: wiki
+      url: https://wiki.example.com/hss-cloud
+    - name: HSS Cloud Source
+      type: repo
+      provider: github
+      url: https://github.com/ethomatos/hss-cloud
+  contacts:
+    - name: HSS Cloud Team
+      type: email
+      contact: hss-cloud-team@example.com
+    - name: HSS Cloud Support
+      type: slack
+      contact: https://slack.com/channels/hss-cloud
+  owner: hss-cloud-team
+spec:
+  type: web
+  lifecycle: production
+  tier: "2"
+integrations:
+  pagerduty:
+    serviceURL: https://pagerduty.com/service-directory/hss-cloud
+datadog:
+  events:
+    - name: "HSS Cloud deployment events"
+      query: "service:hss-cloud AND type:deployment"
+  logs:
+    - name: "HSS Cloud critical logs"
+      query: "service:hss-cloud AND status:error"
+    - name: "HSS Cloud connectivity logs"
+      query: "service:hss-cloud AND @network.status:down"

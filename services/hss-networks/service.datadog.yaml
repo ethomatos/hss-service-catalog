@@ -2,14 +2,47 @@ apiVersion: v3
 kind: service
 metadata:
   name: hss-networks
-  description: HSS demo service - networks
+  displayName: HSS Networks
+  description: HSS demo service - network infrastructure and connectivity management
   tags:
     - team:hss-network-team
     - owner:et
     - customer:hss
     - env:demo
     - business-unit:infrastructure
+  links:
+    - name: HSS Network Runbook
+      type: runbook
+      url: https://runbook.example.com/hss-networks
+    - name: HSS Network Architecture
+      type: doc
+      provider: wiki
+      url: https://wiki.example.com/hss-networks
+    - name: HSS Network Source
+      type: repo
+      provider: github
+      url: https://github.com/ethomatos/hss-networks
+  contacts:
+    - name: HSS Network Team
+      type: email
+      contact: hss-network-team@example.com
+    - name: HSS Network Support
+      type: slack
+      contact: https://slack.com/channels/hss-networks
+  owner: hss-network-team
 spec:
   type: web
   lifecycle: production
   tier: "2"
+integrations:
+  pagerduty:
+    serviceURL: https://pagerduty.com/service-directory/hss-networks
+datadog:
+  events:
+    - name: "HSS Network deployment events"
+      query: "service:hss-networks AND type:deployment"
+  logs:
+    - name: "HSS Network critical logs"
+      query: "service:hss-networks AND status:error"
+    - name: "HSS Network connectivity logs"
+      query: "service:hss-networks AND @network.status:down"

@@ -76,3 +76,4 @@ curl -s -X POST "https://api.${DD_SITE}/api/v2/teams" \
   }' | jq .
 
 echo "Team creation complete!"
+

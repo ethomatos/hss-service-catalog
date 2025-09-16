@@ -2,14 +2,47 @@ apiVersion: v3
 kind: service
 metadata:
   name: hss-databases
-  description: HSS demo service - databases
+  displayName: HSS Databases
+  description: HSS demo service - database infrastructure and data management
   tags:
     - team:hss-database-team
     - owner:et
     - customer:hss
     - env:demo
     - business-unit:infrastructure
+  links:
+    - name: HSS Database Runbook
+      type: runbook
+      url: https://runbook.example.com/hss-databases
+    - name: HSS Database Schema Docs
+      type: doc
+      provider: wiki
+      url: https://wiki.example.com/hss-databases
+    - name: HSS Database Source
+      type: repo
+      provider: github
+      url: https://github.com/ethomatos/hss-databases
+  contacts:
+    - name: HSS Database Team
+      type: email
+      contact: hss-database-team@example.com
+    - name: HSS Database Support
+      type: slack
+      contact: https://slack.com/channels/hss-databases
+  owner: hss-database-team
 spec:
   type: datastore
   lifecycle: production
   tier: "2"
+integrations:
+  pagerduty:
+    serviceURL: https://pagerduty.com/service-directory/hss-databases
+datadog:
+  events:
+    - name: "HSS Database deployment events"
+      query: "service:hss-databases AND type:deployment"
+  logs:
+    - name: "HSS Database critical logs"
+      query: "service:hss-databases AND status:error"
+    - name: "HSS Database performance logs"
+      query: "service:hss-databases AND @db.slow_query:true"

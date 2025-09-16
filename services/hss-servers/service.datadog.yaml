@@ -2,14 +2,45 @@ apiVersion: v3
 kind: service
 metadata:
   name: hss-servers
-  description: HSS demo service - servers
+  displayName: HSS Servers
+  description: HSS demo service - servers infrastructure management
   tags:
     - team:hss-server-team
     - owner:et
     - customer:hss
     - env:demo
     - business-unit:infrastructure
+  links:
+    - name: HSS Servers Runbook
+      type: runbook
+      url: https://runbook.example.com/hss-servers
+    - name: HSS Servers Wiki
+      type: doc
+      provider: wiki
+      url: https://wiki.example.com/hss-servers
+    - name: HSS Servers Source
+      type: repo
+      provider: github
+      url: https://github.com/ethomatos/hss-servers
+  contacts:
+    - name: HSS Server Team
+      type: email
+      contact: hss-server-team@example.com
+    - name: HSS Server Support
+      type: slack
+      contact: https://slack.com/channels/hss-servers
+  owner: hss-server-team
 spec:
   type: web
   lifecycle: production
   tier: "2"
+integrations:
+  pagerduty:
+    serviceURL: https://pagerduty.com/service-directory/hss-servers
+datadog:
+  events:
+    - name: "HSS Server deployment events"
+      query: "service:hss-servers AND type:deployment"
+  logs:
+    - name: "HSS Server critical logs"
+      query: "service:hss-servers AND status:error"
